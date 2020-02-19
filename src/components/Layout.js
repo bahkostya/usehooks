@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import App from "./App"; // Soon to be "App"
+import App from "./App";
 import EmailSignup from "./EmailSignup";
+import analytics from "./../utils/analytics.js";
 
 export const Layout = ({ children }) => {
   return (
@@ -27,6 +28,9 @@ export const Layout = ({ children }) => {
                 boxShadow: "0 2px 0 0 rgba(255, 255, 255, 0.3)",
                 lineHeight: 2
               }}
+              onClick={() => {
+                analytics.track("clickSubtitleTwitter");
+              }}
             >
               Gabe Ragland
             </a>
@@ -38,24 +42,27 @@ export const Layout = ({ children }) => {
         <Container>
           <div className="columns is-vcentered ">
             <div className="column is-6">
-              <div className="title is-5">What all this about?</div>
+              <div className="title is-5">What's all this about?</div>
               <p>
-                <i>Hooks</i> are a new addition in React 16.8 that lets you use
-                state and other React features without writing a class. This
-                website provides easy to understand code examples to help you
-                learn how hooks work and hopefully inspire you to take advantage
-                of them in your next project. Be sure to check out the{" "}
+                <i>Hooks</i> are a new addition in React that lets you use state
+                and other React features without writing a class. This website
+                provides easy to understand code examples to help you learn how
+                hooks work and inspire you to take advantage of them in your
+                next project. You may also like my{" "}
                 <a
-                  target="_blank"
-                  href="https://reactjs.org/docs/hooks-intro.html"
+                  //target="_blank"
+                  href="https://divjoy.com"
+                  style={{
+                    //textDecoration: "underline",
+                    fontWeight: "bold"
+                  }}
+                  onClick={() => {
+                    analytics.track("clickAboutDivjoy");
+                  }}
                 >
-                  official docs
-                </a>
-                . You can also submit post ideas in our{` `}
-                <a target="_blank" href="https://github.com/gragland/usehooks">
-                  Github repo
-                </a>
-                .
+                  React app builder
+                </a>{" "}
+                ✨️
               </p>
             </div>
 
@@ -75,13 +82,26 @@ export const Layout = ({ children }) => {
         <div className="hero-body">
           <FooterLevel>
             <div className="level-item">
-              <Link to="/">Home</Link>
+              <Link
+                to="/"
+                onClick={() => {
+                  analytics.track("clickFooterHome");
+                }}
+              >
+                Home
+              </Link>
             </div>
             <div className="level-item is-hidden-mobile">
               <span>/</span>
             </div>
             <div className="level-item">
-              <a target="_blank" href="https://twitter.com/gabe_ragland">
+              <a
+                target="_blank"
+                href="https://twitter.com/gabe_ragland"
+                onClick={() => {
+                  analytics.track("clickFooterTwitter");
+                }}
+              >
                 Twitter
               </a>
             </div>
@@ -89,7 +109,13 @@ export const Layout = ({ children }) => {
               <span>/</span>
             </div>
             <div className="level-item">
-              <a target="_blank" href="https://github.com/gragland/usehooks">
+              <a
+                target="_blank"
+                href="https://github.com/gragland/usehooks"
+                onClick={() => {
+                  analytics.track("clickFooterGithub");
+                }}
+              >
                 Github
               </a>
             </div>
@@ -97,7 +123,13 @@ export const Layout = ({ children }) => {
               <span>/</span>
             </div>
             <div className="level-item">
-              <a target="_blank" href="/rss.xml">
+              <a
+                target="_blank"
+                href="/rss.xml"
+                onClick={() => {
+                  analytics.track("clickFooterRss");
+                }}
+              >
                 RSS
               </a>
             </div>
@@ -116,12 +148,15 @@ const GitHubLink = () => {
       className="is-hidden-mobile"
       target="blank"
       href="https://github.com/gragland/usehooks"
+      onClick={() => {
+        analytics.track("clickTopGithub");
+      }}
     >
       <i
         className="fab fa-github"
         style={{
           position: "absolute",
-          fontSize: "1.5rem",
+          fontSize: "1.8rem",
           top: "1rem",
           right: "1rem",
           color: "white"
